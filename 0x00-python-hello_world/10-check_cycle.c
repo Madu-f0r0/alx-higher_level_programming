@@ -13,13 +13,13 @@ int check_cycle(listint_t *list)
 	head = nodePtr = list;
 	while (nodePtr)
 	{
-		if (nodePtr->next == head)
+		nodePtr = list->next;
+		list = nodePtr;
+
+		if (nodePtr == head)
 		{
 			return (1);
 		}
-
-		nodePtr = list->next;
-		list = nodePtr;
 	}
 	return (0);
 }
