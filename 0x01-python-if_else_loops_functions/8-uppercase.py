@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 def uppercase(str):
     """Prints a string i uppercase"""
     for i in range(len(str)):
