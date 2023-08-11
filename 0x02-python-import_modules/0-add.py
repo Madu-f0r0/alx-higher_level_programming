@@ -5,4 +5,4 @@ if __name__ == "__main__":
     add = mod.add
     a, b = 1, 2
 
-    print("{} + {} = {}".format(a, b, add(a, b)))
+    print("{:d} + {:d} = {:d}".format(a, b, add(a, b)))
