@@ -4,7 +4,6 @@ if __name__ == "__main__":
     """Prints the sum of a and b"""
     from add_0 import add
 
-    a = 1
-    b = 2
+    a, b = 1, 2
 
-    print("{} + {} = {}".format(a, b, add(a, b)))
+    print("{:d} + {:d} = {:d}".format(a, b, add(a, b)))
