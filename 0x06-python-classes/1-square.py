@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""Class Square defines the attributes of a square"""
+
+
 class Square:
     """ Defines the properties of a square.
 
