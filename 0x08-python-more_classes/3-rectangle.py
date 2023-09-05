@@ -80,5 +80,7 @@ class Rectangle:
         else:
             ret_str = ""
             for i in range(self.__height):
-                ret_str += (self.__width * "#") + "\n"
+                ret_str += (self.__width * "#")
+                if i != self.__height - 1:
+                    ret_str += "\n"
             return ret_str
