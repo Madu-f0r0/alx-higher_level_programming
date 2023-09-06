@@ -31,8 +31,11 @@ class Rectangle:
     @classmethod
     def square(cls, size=0):
         """Sets width and height of Rectangle instance to size"""
-        if isinstance(size, int) and size >= 0:
-            return cls(size, size)
+        if not isinstance(size, int):
+            raise TypeError("size must be an integer")
+        elif size < 0:
+            raise ValueError("size must be >= 0")
+        return cls(size, size)
 
     def __init__(self, width=0, height=0):
         """Initializes the fields of each class Rectangle object.
