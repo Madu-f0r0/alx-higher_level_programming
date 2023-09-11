@@ -24,10 +24,8 @@ class Rectangle(BaseGeometry):
             @height: to be passed to the height of the object
         """
 
-        # Check that @weight and @height are integers
         self.integer_validator('width', width)
-        self.integer_validator('height', height)
-
-        # Initialize instance attributes if they are
         self.__width = width
+
+        self.integer_validator('height', height)
         self.__height = height
