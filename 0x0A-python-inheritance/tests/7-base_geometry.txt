@@ -1,0 +1,64 @@
+Doctest for class BaseGeometry in module 7-base_geometry. The class contains two public instance methods:
+- area(): raises an exception with message 'area() is not implemented'
+- integer_validator(): takes two positional arguments, name (always a string; the name of the object teted), and 'value' (the value of the object tested). A TypeError is raised if the object is not an integer A ValueError is raised if the object is an integer less than 1.
+
+=================================================================================
+
+First, import the class BaseGeometry from module 7-base_geometry
+
+BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+---------------------------------------------------------------------------------
+
+Test 0: Testing area() with a valid object
+
+>>> bg = BaseGeometry()
+>>> bg.area()
+Traceback (most recent call last):
+          ...
+Exception: area() is not implemented
+>>>
+
+---------------------------------------------------------------------------------
+
+Test 1: Testing area() with an undefined object
+
+>>> unknown_obj.area()
+Traceback (most recent call last):
+	  ...
+NameError: name 'unknown_obj' is not defined
+>>>
+
+---------------------------------------------------------------------------------
+
+Test 2: Testing integer_validator with a valid object and arguments
+
+>>> bg = BaseGeometry()
+>>> bg.integer_validator("my_int", 12)
+>>> bg.integer_validator("width", 89)
+>>>
+
+---------------------------------------------------------------------------------
+
+Test 3: Testing integer_validator with valid object, int, and an empty string
+passed to @name
+
+>>> bg.integer_validator("", 89)
+>>>
+
+---------------------------------------------------------------------------------
+
+Test 4: Testing integer_validator with valid object, int, and None passed to @name
+
+>>> bg.integer_validator(None, 89)
+>>>
+
+---------------------------------------------------------------------------------
+
+Test 5: Testing integer_validator with valid object, and string passed to @value
+
+>>> bg.integer_validator("name", "John")
+Traceback (most recent call last):
+	  ...
+TypeError: name is not an integer
+>>>
