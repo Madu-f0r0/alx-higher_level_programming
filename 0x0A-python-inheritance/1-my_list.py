@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-""" This module contains a derived class MyList which inherits
-
-from the base class list
+""" This module contains a class MyList which 
+is a subclass of the base class list
 """
 
 
