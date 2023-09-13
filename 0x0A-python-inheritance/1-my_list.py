@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" This module contains a class MyList which 
+""" This module contains a class MyList which
 is a subclass of the base class list
 """
 
