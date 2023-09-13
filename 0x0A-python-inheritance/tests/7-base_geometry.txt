@@ -6,7 +6,7 @@ Doctest for class BaseGeometry in module 7-base_geometry. The class contains two
 
 First, import the class BaseGeometry from module 7-base_geometry
 
-BaseGeometry = __import__('7-base_geometry').BaseGeometry
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
 ---------------------------------------------------------------------------------
 
@@ -60,5 +60,5 @@ Test 5: Testing integer_validator with valid object, and string passed to @value
 >>> bg.integer_validator("name", "John")
 Traceback (most recent call last):
 	  ...
-TypeError: name is not an integer
+TypeError: name must be an integer
 >>>
