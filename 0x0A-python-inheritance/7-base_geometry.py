@@ -21,6 +21,6 @@ class BaseGeometry:
             @value: the value of the object to be validated
         """
         if type(value) is not int:
-            raise TypeError(f"{name} is not an integer")
+            raise TypeError("{} is not an integer".format(name))
         elif value <= 0:
-            raise ValueError(f"{name} must be greater than 0")
+            raise ValueError("{} must be greater than 0".format(name))
