@@ -62,3 +62,105 @@ Traceback (most recent call last):
 	  ...
 TypeError: name must be an integer
 >>>
+
+---------------------------------------------------------------------------------
+
+Test 6: Testing integer_validator no arguments
+
+>>> bg.integer_validator()
+Traceback (most recent call last):
+	  ...
+TypeError: BaseGeometry.integer_validator() missing 2 required positional arguments: 'name' and 'value'
+>>>
+
+---------------------------------------------------------------------------------
+
+Test 7: Testing integer_validator with a single string as argument
+
+>>> bg.integer_validator("name")
+Traceback (most recent call last):
+	  ...
+TypeError: BaseGeometry.integer_validator() missing 1 required positional argument: 'value'
+>>>
+
+---------------------------------------------------------------------------------
+
+Test 8: Testing integer_validator with 0 passed to @value
+
+>>> bg.integer_validator("age", 0)
+Traceback (most recent call last):
+	  ...
+ValueError: age must be greater than 0
+>>>
+
+---------------------------------------------------------------------------------
+
+Test 9: Testing integer_validator with a negative number passed to @value
+
+>>> bg.integer_validator("age", -15)
+Traceback (most recent call last):
+	  ...
+ValueError: age must be greater than 0
+>>>
+
+---------------------------------------------------------------------------------
+
+Test 10: Testing integer_validator with a list passed to @value
+
+>>> bg.integer_validator("age", [28])
+Traceback (most recent call last):
+	  ...
+TypeError: age must be an integer
+>>>
+
+---------------------------------------------------------------------------------
+
+Test 11: Testing integer_validator with a tuple passed to @value
+
+>>> bg.integer_validator("age", (35, 30))
+Traceback (most recent call last):
+	  ...
+TypeError: age must be an integer
+>>>
+
+---------------------------------------------------------------------------------
+
+Test 12: Testing integer_validator with a dictionary passed to @value
+
+>>> bg.integer_validator("age", {"name": "John"})
+Traceback (most recent call last):
+	  ...
+TypeError: age must be an integer
+>>>
+
+---------------------------------------------------------------------------------
+
+Test 13: Testing integer_validator with a set passed to @value
+
+>>> bg.integer_validator("age", {3, 4})
+Traceback (most recent call last):
+	  ...
+TypeError: age must be an integer
+>>>
+
+---------------------------------------------------------------------------------
+
+Test 14: Testing integer_validator with a Boolean passed to @value
+
+>>> bg.integer_validator("age", True)
+Traceback (most recent call last):
+	  ...
+TypeError: age must be an integer
+>>>
+
+---------------------------------------------------------------------------------
+
+Test 15: Testing integer_validator with None passed to @value
+
+>>> bg.integer_validator("age", None)
+Traceback (most recent call last):
+	  ...
+TypeError: age must be an integer
+>>>
+
+---------------------------------------------------------------------------------
