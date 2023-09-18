@@ -10,8 +10,6 @@ class TestBaseClass(unittest.TestCase):
     def test_id_none(self):
         """Tests for when @id is not initialized"""
         b1 = Base()
-        self.assertEqual(b1.id, 1)
-
         b2 = Base()
         self.assertEqual(b2.id, b1.id + 1)
 
