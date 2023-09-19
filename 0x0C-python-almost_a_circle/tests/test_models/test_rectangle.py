@@ -431,34 +431,34 @@ class TestRectangleUpdate(unittest.TestCase):
         """Tests the update method with one arg"""
         rect = Rectangle(10, 10, 10, 10)
         rect.update(89)
-        self.assertEqual(rect.__str__(), "[Rectangle] (89) 10/10 - 10/10")
+        self.assertEqual(str(rect), "[Rectangle] (89) 10/10 - 10/10")
 
     def test_2_args_update(self):
         """Tests the update method with two args"""
         rect = Rectangle(10, 10, 10, 10)
         rect.update(89, 2)
-        self.assertEqual(rect.__str__(), "[Rectangle] (89) 10/10 - 2/10")
+        self.assertEqual(str(rect), "[Rectangle] (89) 10/10 - 2/10")
 
     def test_3_args_update(self):
         """Tests the update method with three args"""
         rect = Rectangle(10, 10, 10, 10)
         rect.update(89, 2, 3)
-        self.assertEqual(rect.__str__(), "[Rectangle] (89) 10/10 - 2/3")
+        self.assertEqual(str(rect), "[Rectangle] (89) 10/10 - 2/3")
 
     def test_4_args_update(self):
         """Tests the update method with four args"""
         rect = Rectangle(10, 10, 10, 10)
         rect.update(89, 2, 3, 4)
-        self.assertEqual(rect.__str__(), "[Rectangle] (89) 4/10 - 2/3")
+        self.assertEqual(str(rect), "[Rectangle] (89) 4/10 - 2/3")
 
     def test_5_args_update(self):
         """Tests the update method with five args"""
         rect = Rectangle(10, 10, 10, 10)
         rect.update(89, 2, 3, 4, 5)
-        self.assertEqual(rect.__str__(), "[Rectangle] (89) 4/5 - 2/3")
+        self.assertEqual(str(rect), "[Rectangle] (89) 4/5 - 2/3")
 
     def test_1_kwargs_update(self):
         """Tests the update method with one kwarg"""
         rect = Rectangle(10, 10, 10, 10, 10)
         rect.update(height=1)
-        self.assertEqual(rect.__str__(), "[Rectangle] (10) 10/10 - 10/1")
+        self.assertEqual(str(rect), "[Rectangle] (10) 10/10 - 10/1")
