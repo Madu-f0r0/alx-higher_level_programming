@@ -1,183 +1,145 @@
-""" Unit test for class Rectangle """
+""" Unit test for class Square """
 
 import unittest
-from models.rectangle import Rectangle
+from models.square import Square
 
 
-class TestRectangleClassInstantiation(unittest.TestCase):
-    """Tests variations of class Rectangle instantiation"""
+class TestSquareClassInstantiation(unittest.TestCase):
+    """Tests variations of class Square instantiation"""
 
-    def test_normal_Rectangle(self):
-        """Proper object instantiation with integer width and
+    def test_normal_Square(self):
+        """Proper object instantiation with integer size > 0"""
+        sq1 = Square(5)
+        sq2 = Square(6)
 
-        height args > 0
-        """
-        rect1 = Rectangle(5, 10)
-        rect2 = Rectangle(6, 12)
-
-        self.assertEqual(rect2.id, rect1.id + 1)
-        self.assertEqual(rect1.width, 5)
-        self.assertEqual(rect1.height, 10)
-        self.assertEqual(rect1.x, 0)
-        self.assertEqual(rect1.y, 0)
+        self.assertEqual(sq2.id, sq1.id + 1)
+        self.assertEqual(sq1.width, 5)
+        self.assertEqual(sq1.height, 5)
+        self.assertEqual(sq1.x, 0)
+        self.assertEqual(sq1.y, 0)
 
     def test_unique_id(self):
-        """Proper object instantiation with integer width and
+        """Proper object instantiation with integer size > 0,
 
-        height args > 0, and unique id
+        and unique id
         """
-        rect1 = Rectangle(4, 8)
-        rect2 = Rectangle(5, 10, id=12)
-        rect3 = Rectangle(6, 12)
+        sq1 = Square(4)
+        sq2 = Square(5, id=12)
+        sq3 = Rectangle(6)
 
-        self.assertEqual(rect2.id, 12)
-        self.assertEqual(rect3.id, rect1.id + 1)
+        self.assertEqual(sq2.id, 12)
+        self.assertEqual(sq3.id, sq1.id + 1)
 
     def test_unique_x(self):
         """Object instantiation with int x value >= 0"""
-        rect1 = Rectangle(5, 10, x=1)
-        rect2 = Rectangle(6, 12, x=15)
+        sq1 = Square(5, x=1)
+        sq2 = Square(6, x=15)
 
-        self.assertEqual(rect1.x, 1)
-        self.assertEqual(rect2.x, 15)
+        self.assertEqual(sq1.x, 1)
+        self.assertEqual(sq2.x, 15)
 
     def test_negative_x(self):
         """Object instantiation with int x value < 0"""
         with self.assertRaises(ValueError):
-            Rectangle(5, 10, x=-5)
+            Square(5, x=-5)
 
     def test_string_x(self):
         """Object instantiation with x of type str"""
         with self.assertRaises(TypeError):
-            Rectangle(5, 10, "5")
+            Square(5, "5")
 
     def test_list_x(self):
         """Object instantiation with x of type list"""
         with self.assertRaises(TypeError):
-            Rectangle(5, 10, [5])
+            Square(5, [5])
 
     def test_tuple_x(self):
         """Object instantiation with x of type tuple"""
         with self.assertRaises(TypeError):
-            Rectangle(5, 10, (5, ))
+            Square(5, (5, ))
 
     def test_set_x(self):
         """Object instantiation with x of type set"""
         with self.assertRaises(TypeError):
-            Rectangle(5, 10, {3, 4})
+            Square(5, {3, 4})
 
     def test_dictionary_x(self):
         """Object instantiation with x of type dict"""
         with self.assertRaises(TypeError):
-            Rectangle(5, 10, {"x": 5})
+            Square(5, {"x": 5})
 
     def test_unique_y(self):
         """Object instantiation with int y value >= 0"""
-        rect1 = Rectangle(5, 10, y=1)
-        rect2 = Rectangle(6, 12, y=15)
+        sq1 = Square(5, y=1)
+        sq2 = Square(6, y=15)
 
-        self.assertEqual(rect1.y, 1)
-        self.assertEqual(rect2.y, 15)
+        self.assertEqual(sq1.y, 1)
+        self.assertEqual(sq2.y, 15)
 
     def test_negative_y(self):
         """Object instantiation with int y value < 0"""
         with self.assertRaises(ValueError):
-            Rectangle(5, 10, y=-5)
+            Square(5, y=-5)
 
     def test_string_y(self):
         """Object instantiation with y of type str"""
         with self.assertRaises(TypeError):
-            Rectangle(5, 10, 2, "5")
+            Square(5, 2, "5")
 
     def test_list_y(self):
         """Object instantiation with y of type list"""
         with self.assertRaises(TypeError):
-            Rectangle(5, 10, 2, [5])
+            Square(5, 2, [5])
 
     def test_tuple_y(self):
         """Object instantiation with y of type tuple"""
         with self.assertRaises(TypeError):
-            Rectangle(5, 10, 2, (5, ))
+            Square(5, 2, (5, ))
 
     def test_set_y(self):
         """Object instantiation with y of type set"""
         with self.assertRaises(TypeError):
-            Rectangle(5, 10, 2, {3, 4})
+            Square(5, 2, {3, 4})
 
     def test_dictionary_y(self):
         """Object instantiation with y of type dict"""
         with self.assertRaises(TypeError):
-            Rectangle(5, 10, 2, {"y": 5})
+            Square(5, 2, {"y": 5})
 
-    def test_zero_width(self):
-        """Instantiating Rectangle class with width = 0"""
+    def test_zero_size(self):
+        """Instantiating Square class with size = 0"""
         with self.assertRaises(ValueError):
-            rect = Rectangle(0, 10)
+            sq = Square(0)
 
-    def test_negative_width(self):
-        """Instantiating Rectangle class with width < 0"""
+    def test_negative_size(self):
+        """Instantiating Square class with size < 0"""
         with self.assertRaises(ValueError):
-            rect = Rectangle(-5, 10)
+            sq = Square(-5)
 
-    def test_string_width(self):
-        """Object instantiation with width of type str"""
+    def test_string_size(self):
+        """Object instantiation with size of type str"""
         with self.assertRaises(TypeError):
-            Rectangle("5", 10)
+            Square("5")
 
-    def test_list_width(self):
-        """Object instantiation with width of type list"""
+    def test_list_size(self):
+        """Object instantiation with size of type list"""
         with self.assertRaises(TypeError):
-            Rectangle([5], 10)
+            Square([5])
 
-    def test_tuple_width(self):
-        """Object instantiation with width of type tuple"""
+    def test_tuple_size(self):
+        """Object instantiation with size of type tuple"""
         with self.assertRaises(TypeError):
-            Rectangle((5, ), 10)
+            Square((5, ))
 
-    def test_set_width(self):
-        """Object instantiation with width of type set"""
+    def test_set_size(self):
+        """Object instantiation with size of type set"""
         with self.assertRaises(TypeError):
-            Rectangle({5}, 10)
+            Square({5})
 
-    def test_dictionary_width(self):
-        """Object instantiation with width of type dict"""
+    def test_dictionary_size(self):
+        """Object instantiation with size of type dict"""
         with self.assertRaises(TypeError):
-            Rectangle({"width": 5}, 10)
-
-    def test_zero_height(self):
-        """Instantiating Rectangle class with height = 0"""
-        with self.assertRaises(ValueError):
-            rect = Rectangle(5, 0)
-
-    def test_negative_height(self):
-        """Instantiating Rectangle class with height < 0"""
-        with self.assertRaises(ValueError):
-            rect = Rectangle(5, -10)
-
-    def test_string_height(self):
-        """Object instantiation with height of type str"""
-        with self.assertRaises(TypeError):
-            Rectangle(5, "10")
-
-    def test_list_height(self):
-        """Object instantiation with height of type list"""
-        with self.assertRaises(TypeError):
-            Rectangle(5, [10])
-
-    def test_tuple_height(self):
-        """Object instantiation with height of type tuple"""
-        with self.assertRaises(TypeError):
-            Rectangle(5, (10, ))
-
-    def test_set_height(self):
-        """Object instantiation with height of type set"""
-        with self.assertRaises(TypeError):
-            Rectangle(5, {10})
-
-    def test_dictionary_height(self):
-        """Object instantiation with height of type dict"""
-        with self.assertRaises(TypeError):
-            Rectangle(5, {"height": 10})
+            Square({"size": 5})
 
 
 class TestRectangleSetters(unittest.TestCase):
