@@ -233,3 +233,55 @@ class TestBaseClassCreate(unittest.TestCase):
         """Tests create() on a Square instance with dict of 4 attributes"""
         sq = Square.create(**{"id": 10, "size": 5, "x": 2, "y": 2})
         self.assertEqual(str(sq), "[Square] (10) 2/2 - 5")
+
+
+class TestBaseClassLoadFromFile(unittest.TestCase):
+    """Tests the functionality of the load_from_file() method"""
+
+    @classmethod
+    def tearDownClass(cls):
+        """Deletes a file created after the class has run"""
+        if os.path.exists("Rectangle.json"):
+            os.remove("Rectangle.json")
+
+        if os.path.exists("Square.json"):
+            os.remove("Square.json")
+
+        if os.path.exists("Base.json"):
+            os.remove("Base.json")
+
+    def test_rectangle_class_load(self):
+        """Tests load_from_file() with Rectangle class"""
+        rect = Rectangle(5, 10, 2, 2, 12)
+        Rectangle.save_to_file([rect])
+        list_rect = Rectangle.load_from_file()
+        new_rect = list_rect[0]
+
+        self.assertFalse(rect is new_rect)
+        self.assertEqual(str(new_rect), "[Rectangle] (12) 2/2 - 5/10")
+
+    def test_rectangle_inexistent_file(self):
+        """Tests load_from_file() with an inexistent file"""
+        if os.path.exists("Rectangle.json"):
+            os.remove("Rectangle.json")
+
+        list_rect = Rectangle.load_from_file()
+        self.assertEqual(list_rect, [])
+
+    def test_square_class_load(self):
+        """Tests load_from_file() with Square class"""
+        sq = Square(5, 2, 2, 12)
+        Square.save_to_file([sq])
+        list_sq = Square.load_from_file()
+        new_sq = list_sq[0]
+
+        self.assertFalse(sq is new_sq)
+        self.assertEqual(str(new_sq), "[Square] (12) 2/2 - 5")
+
+    def test_square_inexistent_file(self):
+        """Tests load_from_file() with an inexistent file"""
+        if os.path.exists("Square.json"):
+            os.remove("Square.json")
+
+        list_sq = Square.load_from_file()
+        self.assertEqual(list_sq, [])
