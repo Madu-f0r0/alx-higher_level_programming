@@ -365,56 +365,56 @@ class TestRectangleSetters(unittest.TestCase):
 
 
 class TestRectangleArea(unittest.TestCase):
-    """Tests the functionality of the Rectangle instance method @area"""
+    """Tests the functionality of the Rectangle instance method area()"""
 
     def test_perfect_instance_area(self):
-        """Tests a Rectangle instance area"""
+        """Tests a Rectangle instance area()"""
         rect = Rectangle(5, 10)
         self.assertEqual(rect.area(), 50)
 
     def test_unknown_object_area(self):
-        """Tests the @area method on an undefined object"""
+        """Tests the area() method on an undefined object"""
         with self.assertRaises(NameError):
             unknown_object.area()
 
     def test_instance_display(self):
-        """Tests the @display method on a Rectangle instance"""
+        """Tests the display() method on a Rectangle instance"""
         rect = Rectangle(2, 2)
         self.assertEqual(rect.display(), None)
 
 
 class TestRectangleStr(unittest.TestCase):
-    """Tests the functionality of the __str__ method"""
+    """Tests the functionality of the __str__() method"""
 
     def test_all_args_str(self):
-        """Tests the __str__ method on a Rectangle instance"""
+        """Tests the __str__() method on a Rectangle instance"""
         rect = Rectangle(4, 6, 2, 1, 12)
         strRet = "[Rectangle] (12) 2/1 - 4/6"
         self.assertEqual(rect.__str__(), strRet)
 
     def test_4_args_str(self):
-        """Tests the __str__ method with 4 args"""
+        """Tests the __str__() method with 4 args"""
         rect1 = Rectangle(2, 3)
         rect2 = Rectangle(5, 10, 2, 2)
         strRet = "[Rectangle] (" + str((rect1.id + 1)) + ") 2/2 - 5/10"
         self.assertEqual(rect2.__str__(), strRet)
 
     def test_3_args_str(self):
-        """Tests the __str__ method with 3 args"""
+        """Tests the __str__() method with 3 args"""
         rect1 = Rectangle(2, 3)
         rect2 = Rectangle(5, 10, 2)
         strRet = "[Rectangle] (" + str((rect1.id + 1)) + ") 2/0 - 5/10"
         self.assertEqual(rect2.__str__(), strRet)
 
     def test_2_args_str(self):
-        """Tests the __str__ method with 2 args"""
+        """Tests the __str__() method with 2 args"""
         rect1 = Rectangle(2, 3)
         rect2 = Rectangle(5, 10)
         strRet = "[Rectangle] (" + str((rect1.id + 1)) + ") 0/0 - 5/10"
         self.assertEqual(rect2.__str__(), strRet)
 
     def test_set_all_args(self):
-        """Tests the __str__ method after setting all the args"""
+        """Tests the __str__() method after setting all the args"""
         rect = Rectangle(5, 10, 2, 2, 1)
         rect.width = 4
         rect.height = 6
@@ -425,40 +425,84 @@ class TestRectangleStr(unittest.TestCase):
 
 
 class TestRectangleUpdate(unittest.TestCase):
-    """Tests the functionality of the @update method"""
+    """Tests the functionality of the update() method"""
 
     def test_1_arg_update(self):
-        """Tests the update method with one arg"""
+        """Tests the update() method with one arg"""
         rect = Rectangle(10, 10, 10, 10)
         rect.update(89)
         self.assertEqual(str(rect), "[Rectangle] (89) 10/10 - 10/10")
 
     def test_2_args_update(self):
-        """Tests the update method with two args"""
+        """Tests the update() method with two args"""
         rect = Rectangle(10, 10, 10, 10)
         rect.update(89, 2)
         self.assertEqual(str(rect), "[Rectangle] (89) 10/10 - 2/10")
 
     def test_3_args_update(self):
-        """Tests the update method with three args"""
+        """Tests the update() method with three args"""
         rect = Rectangle(10, 10, 10, 10)
         rect.update(89, 2, 3)
         self.assertEqual(str(rect), "[Rectangle] (89) 10/10 - 2/3")
 
     def test_4_args_update(self):
-        """Tests the update method with four args"""
+        """Tests the update() method with four args"""
         rect = Rectangle(10, 10, 10, 10)
         rect.update(89, 2, 3, 4)
         self.assertEqual(str(rect), "[Rectangle] (89) 4/10 - 2/3")
 
     def test_5_args_update(self):
-        """Tests the update method with five args"""
+        """Tests the update() method with five args"""
         rect = Rectangle(10, 10, 10, 10)
         rect.update(89, 2, 3, 4, 5)
         self.assertEqual(str(rect), "[Rectangle] (89) 4/5 - 2/3")
 
     def test_1_kwargs_update(self):
-        """Tests the update method with one kwarg"""
+        """Tests the update() method with one kwarg"""
         rect = Rectangle(10, 10, 10, 10, 10)
         rect.update(height=1)
         self.assertEqual(str(rect), "[Rectangle] (10) 10/10 - 10/1")
+
+    def test_2_kwargs_update(self):
+        """Tests the update() method with two kwargs"""
+        rect = Rectangle(10, 10, 10, 10, 10)
+        rect.update(height=1, x=2)
+        self.assertEqual(str(rect), "[Rectangle] (10) 2/10 - 10/1")
+
+    def test_3_kwargs_update(self):
+        """Tests the update() method with three kwargs"""
+        rect = Rectangle(10, 10, 10, 10, 10)
+        rect.update(height=1, x=2, width=3)
+        self.assertEqual(str(rect), "[Rectangle] (10) 2/10 - 3/1")
+
+    def test_4_kwargs_update(self):
+        """Tests the update() method with four kwargs"""
+        rect = Rectangle(10, 10, 10, 10, 10)
+        rect.update(height=1, x=2, width=3, y=2)
+        self.assertEqual(str(rect), "[Rectangle] (10) 2/2 - 3/1")
+
+    def test_5_kwargs_update(self):
+        """Tests the update() method with five kwargs"""
+        rect = Rectangle(10, 10, 10, 10, 10)
+        rect.update(height=1, x=2, width=3, y=2, id=89)
+        self.assertEqual(str(rect), "[Rectangle] (89) 2/2 - 3/1")
+
+
+class TestRectangleToDictionary(unittest.TestCase):
+    """Tests the functionality of the Rectangle instance
+    
+    method to_dictionary()
+    """
+
+    def test_perfect_to_dictionary(self):
+        """Tests the to_dictionary() method on a Rectangle instance"""
+        rect1 = Rectangle(5, 10, 2, 2, 12)
+        rect_dict = rect1.to_dictionary()
+        rect2 = Rectangle(6, 12)
+        rect2.update(**rect_dict)
+        self.assertEqual(str(rect2), "[Rectangle] (12) 2/2 - 5/10")
+
+    def test_unknown_object(self):
+        "Test the to_dictionary() method on an undefined object"""
+        with self.assertRaises(NameError):
+            unknown_obj.to_dictionary()

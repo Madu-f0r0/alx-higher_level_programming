@@ -337,7 +337,7 @@ class TestSquareStr(unittest.TestCase):
         self.assertEqual(sq.__str__(), "[Square] (12) 3/1 - 4")
 
 
-class TestRectangleUpdate(unittest.TestCase):
+class TestSquareUpdate(unittest.TestCase):
     """Tests the functionality of the @update method"""
 
     def test_1_arg_update(self):
@@ -369,3 +369,41 @@ class TestRectangleUpdate(unittest.TestCase):
         sq = Square(5, 2, 2, 1)
         sq.update(x=12)
         self.assertEqual(sq.__str__(), "[Square] (1) 12/2 - 5")
+
+    def test_2_kwargs_update(self):
+        """Tests the update method with two kwargs"""
+        sq = Square(5, 2, 2, 1)
+        sq.update(x=12, size=10)
+        self.assertEqual(sq.__str__(), "[Square] (1) 12/2 - 10")
+
+    def test_3_kwargs_update(self):
+        """Tests the update method with three kwargs"""
+        sq = Square(5, 2, 2, 1)
+        sq.update(x=12, size=10, id=2)
+        self.assertEqual(sq.__str__(), "[Square] (2) 12/2 - 10")
+
+    def test_4_kwargs_update(self):
+        """Tests the update method with four kwargs"""
+        sq = Square(5, 2, 2, 1)
+        sq.update(x=12, size=10, id=2, y=3)
+        self.assertEqual(sq.__str__(), "[Square] (2) 12/3 - 10")
+
+
+class TestSquareToDictionary(unittest.TestCase):
+    """Tests the functionality of the Square instance
+
+    method to_dictionary()
+    """
+
+    def test_perfect_to_dictionary(self):
+        """Tests the to_dictionary() method on a Square instance"""
+        sq1 = Square(5, 2, 2, 12)
+        sq_dict = sq1.to_dictionary()
+        sq2 = Square(6)
+        sq2.update(**sq_dict)
+        self.assertEqual(str(sq2), "[Square] (12) 2/2 - 5")
+
+    def test_unknown_object(self):
+        "Test the to_dictionary() method on an undefined object"""
+        with self.assertRaises(NameError):
+            unknown_obj.to_dictionary()
