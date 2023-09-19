@@ -25,7 +25,7 @@ class TestSquareClassInstantiation(unittest.TestCase):
         """
         sq1 = Square(4)
         sq2 = Square(5, id=12)
-        sq3 = Rectangle(6)
+        sq3 = Square(6)
 
         self.assertEqual(sq2.id, 12)
         self.assertEqual(sq3.id, sq1.id + 1)
@@ -143,196 +143,148 @@ class TestSquareClassInstantiation(unittest.TestCase):
 
 
 class TestRectangleSetters(unittest.TestCase):
-    """Tests the functionality of Rectangle attribute setters"""
+    """Tests the functionality of Square attribute setters"""
 
-    def test_width_setter(self):
-        """Sets width of a Rectangle instance to an int > 0"""
-        rect = Rectangle(5, 10)
-        rect.width = 12
-        self.assertEqual(rect.width, 12)
+    def test_size_setter(self):
+        """Sets size of a Square instance to an int > 0"""
+        sq = Square(5)
+        sq.size = 10
+        self.assertEqual(sq.size, 10)
 
-    def test_zero_width_setter(self):
-        """Attempts to set width to an int = 0"""
+    def test_zero_size_setter(self):
+        """Attempts to set size to an int = 0"""
         with self.assertRaises(ValueError):
-            rect = Rectangle(5, 10)
-            rect.width = 0
+            sq = Square(5)
+            sq.size = 0
 
-    def test_negative_width_setter(self):
-        """Attempts to set width to an int < 0"""
+    def test_negative_size_setter(self):
+        """Attempts to set size to an int < 0"""
         with self.assertRaises(ValueError):
-            rect = Rectangle(5, 10)
-            rect.width = -5
+            sq = Square(5)
+            sq.size = -5
 
-    def test_string_width_setter(self):
-        """Attempts to set width of type str"""
+    def test_string_size_setter(self):
+        """Attempts to set size of type str"""
         with self.assertRaises(TypeError):
-            rect = Rectangle(5, 10)
-            rect.width = "6"
+            sq = Square(5)
+            sq.size = "6"
 
-    def test_list_width_setter(self):
-        """Attempts to set width of type list"""
+    def test_list_size_setter(self):
+        """Attempts to set size of type list"""
         with self.assertRaises(TypeError):
-            rect = Rectangle(5, 10)
-            rect.width = [6]
+            sq = Square(5)
+            sq.size = [6]
 
-    def test_tuple_width_setter(self):
-        """Attempts to set width of type tuple"""
+    def test_tuple_size_setter(self):
+        """Attempts to set size of type tuple"""
+        with self.assertRaises(TypeError): 
+            sq = Square(5)
+            sq.size = (6, )
+
+    def test_set_size_setter(self):
+        """Attempts to set size of type set"""
         with self.assertRaises(TypeError):
-            rect = Rectangle(5, 10)
-            rect.width = (6, )
+            sq = Square(5)
+            sq.size = {6}
 
-    def test_set_width_setter(self):
-        """Attempts to set width of type set"""
+    def test_dictionary_size_setter(self):
+        """Attempts to size of type dict"""
         with self.assertRaises(TypeError):
-            rect = Rectangle(5, 10)
-            rect.width = {6}
-
-    def test_dictionary_width_setter(self):
-        """Attempts to set width of type dict"""
-        with self.assertRaises(TypeError):
-            rect = Rectangle(5, 10)
-            rect.width = {"width": 6}
-
-    def test_height_setter(self):
-        """Sets height of a Rectangle instance to an int > 0"""
-        rect = Rectangle(5, 10)
-        rect.height = 6
-        self.assertEqual(rect.height, 6)
-
-    def test_zero_height_setter(self):
-        """Attempts to set height to an int = 0"""
-        with self.assertRaises(ValueError):
-            rect = Rectangle(5, 10)
-            rect.height = 0
-
-    def test_negative_height_setter(self):
-        """Attempts to set height to an int < 0"""
-        with self.assertRaises(ValueError):
-            rect = Rectangle(5, 10)
-            rect.height = -10
-
-    def test_string_height_setter(self):
-        """Attempts to set height of type str"""
-        with self.assertRaises(TypeError):
-            rect = Rectangle(5, 10)
-            rect.height = "12"
-
-    def test_list_height_setter(self):
-        """Attempts to set height of type list"""
-        with self.assertRaises(TypeError):
-            rect = Rectangle(5, 10)
-            rect.height = [12]
-
-    def test_tuple_height_setter(self):
-        """Attempts to set height of type tuple"""
-        with self.assertRaises(TypeError):
-            rect = Rectangle(5, 10)
-            rect.height = (12, )
-
-    def test_set_height_setter(self):
-        """Attempts to set height of type set"""
-        with self.assertRaises(TypeError):
-            rect = Rectangle(5, 10)
-            rect.height = {12}
-
-    def test_dictionary_height_setter(self):
-        """Attempts to set height of type dict"""
-        with self.assertRaises(TypeError):
-            rect = Rectangle(5, 10)
-            rect.height = {"height": 12}
+            sq = Square(5)
+            sq.size = {"width": 6}
 
     def test_zero_x_setter(self):
         """Attempts to set x to an int = 0"""
-        rect = Rectangle(5, 10)
-        rect.x = 0
-        self.assertEqual(rect.x, 0)
+        sq = Square(5)
+        sq.x = 0
+        self.assertEqual(sq.x, 0)
 
     def test_negative_x_setter(self):
         """Attempts to set x to an int < 0"""
         with self.assertRaises(ValueError):
-            rect = Rectangle(5, 10)
-            rect.x = -2
+            sq = Square(5)
+            sq.x = -2
 
     def test_string_x_setter(self):
         """Attempts to set x of type str"""
         with self.assertRaises(TypeError):
-            rect = Rectangle(5, 10)
-            rect.x = "2"
+            sq = Square(5)
+            sq.x = "2"
 
     def test_list_x_setter(self):
         """Attempts to set x of type list"""
         with self.assertRaises(TypeError):
-            rect = Rectangle(5, 10)
-            rect.x = [2]
+            sq = Square(5)
+            sq.x = [2]
 
     def test_tuple_x_setter(self):
         """Attempts to set x of type tuple"""
         with self.assertRaises(TypeError):
-            rect = Rectangle(5, 10)
-            rect.x = (12, )
+            sq = Square(5)
+            sq.x = (2, )
 
     def test_set_x_setter(self):
         """Attempts to set x of type set"""
         with self.assertRaises(TypeError):
-            rect = Rectangle(5, 10)
-            rect.x = {12}
+            sq = Square(5)
+            sq.x = {2}
 
     def test_dictionary_x_setter(self):
         """Attempts to set x of type dict"""
         with self.assertRaises(TypeError):
-            rect = Rectangle(5, 10)
-            rect.x = {"x": 2}
+            sq = Square(5)
+            sq.x = {"x": 2}
 
     def test_zero_y_setter(self):
         """Attempts to set y to an int = 0"""
-        rect = Rectangle(5, 10)
-        rect.y = 0
-        self.assertEqual(rect.y, 0)
+        sq = Square(5)
+        sq.y = 0
+        self.assertEqual(sq.y, 0)
 
     def test_negative_y_setter(self):
         """Attempts to set y to an int < 0"""
         with self.assertRaises(ValueError):
-            rect = Rectangle(5, 10)
-            rect.y = -2
+            sq = Square(5)
+            sq.y = -2
 
     def test_string_y_setter(self):
         """Attempts to set y of type str"""
         with self.assertRaises(TypeError):
-            rect = Rectangle(5, 10)
-            rect.y = "2"
+            sq = Square(5)
+            sq.y = "2"
 
     def test_list_y_setter(self):
         """Attempts to set x of type list"""
         with self.assertRaises(TypeError):
-            rect = Rectangle(5, 10)
-            rect.y = [2]
+            sq = Square(5)
+            sq.y = [2]
 
     def test_tuple_y_setter(self):
         """Attempts to set y of type tuple"""
         with self.assertRaises(TypeError):
-            rect = Rectangle(5, 10)
-            rect.y = (12, )
+            sq = Square(5)
+            sq.y = (2, )
 
     def test_set_y_setter(self):
         """Attempts to set x of type set"""
         with self.assertRaises(TypeError):
-            rect = Rectangle(5, 10)
-            rect.y = {12}
+            sq = Square(5)
+            sq.y = {2}
 
     def test_dictionary_y_setter(self):
         """Attempts to set x of type dict"""
         with self.assertRaises(TypeError):
-            rect = Rectangle(5, 10)
-            rect.y = {"y": 2}
+            sq = Square(5)
+            sq.y = {"y": 2}
 
 
-class TestRectangleArea(unittest.TestCase):
-    """Tests the functionality of the Rectangle instance method @area"""
+class TestSquareArea(unittest.TestCase):
+    """Tests the functionality of the inherited Square instance method @area"""
 
     def test_perfect_instance_area(self):
-        """Tests a Rectangle instance area"""
-        rect = Rectangle(5, 10)
-        self.assertEqual(rect.area(), 50)
+        """Tests a Square instance area"""
+        sq = Square(5)
+        self.assertEqual(sq.area(), 25)
 
     def test_unknown_object_area(self):
         """Tests the @area method on an undefined object"""
@@ -340,50 +292,49 @@ class TestRectangleArea(unittest.TestCase):
             unknown_object.area()
 
     def test_instance_display(self):
-        """Tests the @display method on a Rectangle instance"""
-        rect = Rectangle(2, 2)
-        self.assertEqual(rect.display(), None)
+        """Tests the @display method on a Square instance"""
+        sq = Square(2)
+        self.assertEqual(sq.display(), None)
 
 
-class TestRectangleStr(unittest.TestCase):
+class TestSquareStr(unittest.TestCase):
     """Tests the functionality of the __str__ method"""
 
     def test_all_args_str(self):
         """Tests the __str__ method on a Rectangle instance"""
-        rect = Rectangle(4, 6, 2, 1, 12)
-        strRet = "[Rectangle] (12) 2/1 - 4/6"
-        self.assertEqual(rect.__str__(), strRet)
-
-    def test_4_args_str(self):
-        """Tests the __str__ method with 4 args"""
-        rect1 = Rectangle(2, 3)
-        rect2 = Rectangle(5, 10, 2, 2)
-        strRet = "[Rectangle] (" + str((rect1.id + 1)) + ") 2/2 - 5/10"
-        self.assertEqual(rect2.__str__(), strRet)
+        sq = Square(4, 2, 1, 12)
+        strRet = "[Square] (12) 2/1 - 4"
+        self.assertEqual(sq.__str__(), strRet)
 
     def test_3_args_str(self):
-        """Tests the __str__ method with 3 args"""
-        rect1 = Rectangle(2, 3)
-        rect2 = Rectangle(5, 10, 2)
-        strRet = "[Rectangle] (" + str((rect1.id + 1)) + ") 2/0 - 5/10"
-        self.assertEqual(rect2.__str__(), strRet)
+        """Tests the __str__ method with 4 args"""
+        sq1 = Square(2)
+        sq2 = Square(5, 2, 2)
+        strRet = "[Square] (" + str((sq1.id + 1)) + ") 2/2 - 5"
+        self.assertEqual(sq2.__str__(), strRet)
 
     def test_2_args_str(self):
+        """Tests the __str__ method with 3 args"""
+        sq1 = Square(2)
+        sq2 = Square(5, 2)
+        strRet = "[Square] (" + str((sq1.id + 1)) + ") 2/0 - 5"
+        self.assertEqual(sq2.__str__(), strRet)
+
+    def test_1_args_str(self):
         """Tests the __str__ method with 2 args"""
-        rect1 = Rectangle(2, 3)
-        rect2 = Rectangle(5, 10)
-        strRet = "[Rectangle] (" + str((rect1.id + 1)) + ") 0/0 - 5/10"
-        self.assertEqual(rect2.__str__(), strRet)
+        sq1 = Square(2)
+        sq2 = Square(5)
+        strRet = "[Square] (" + str((sq1.id + 1)) + ") 0/0 - 5"
+        self.assertEqual(sq2.__str__(), strRet)
 
     def test_set_all_args(self):
         """Tests the __str__ method after setting all the args"""
-        rect = Rectangle(5, 10, 2, 2, 1)
-        rect.width = 4
-        rect.height = 6
-        rect.x = 3
-        rect.y = 1
-        rect.id = 12
-        self.assertEqual(rect.__str__(), "[Rectangle] (12) 3/1 - 4/6")
+        sq = Square(5, 2, 2, 1)
+        sq.size = 4
+        sq.x = 3
+        sq.y = 1
+        sq.id = 12
+        self.assertEqual(sq.__str__(), "[Square] (12) 3/1 - 4")
 
 
 class TestRectangleUpdate(unittest.TestCase):
@@ -391,36 +342,30 @@ class TestRectangleUpdate(unittest.TestCase):
 
     def test_1_arg_update(self):
         """Tests the update method with one arg"""
-        rect = Rectangle(10, 10, 10, 10)
-        rect.update(89)
-        self.assertEqual(rect.__str__(), "[Rectangle] (89) 10/10 - 10/10")
+        sq = Square(5, id=10)
+        sq.update(1)
+        self.assertEqual(sq.__str__(), "[Square] (1) 0/0 - 5")
 
     def test_2_args_update(self):
         """Tests the update method with two args"""
-        rect = Rectangle(10, 10, 10, 10)
-        rect.update(89, 2)
-        self.assertEqual(rect.__str__(), "[Rectangle] (89) 10/10 - 2/10")
+        sq = Square(5, id=10)
+        sq.update(1, 2)
+        self.assertEqual(sq.__str__(), "[Square] (1) 0/0 - 2")
 
     def test_3_args_update(self):
         """Tests the update method with three args"""
-        rect = Rectangle(10, 10, 10, 10)
-        rect.update(89, 2, 3)
-        self.assertEqual(rect.__str__(), "[Rectangle] (89) 10/10 - 2/3")
+        sq = Square(5, id=10)
+        sq.update(1, 2, 3)
+        self.assertEqual(sq.__str__(), "[Square] (1) 3/0 - 2")
 
     def test_4_args_update(self):
         """Tests the update method with four args"""
-        rect = Rectangle(10, 10, 10, 10)
-        rect.update(89, 2, 3, 4)
-        self.assertEqual(rect.__str__(), "[Rectangle] (89) 4/10 - 2/3")
-
-    def test_5_args_update(self):
-        """Tests the update method with five args"""
-        rect = Rectangle(10, 10, 10, 10)
-        rect.update(89, 2, 3, 4, 5)
-        self.assertEqual(rect.__str__(), "[Rectangle] (89) 4/5 - 2/3")
+        sq = Square(5, id=10)
+        sq.update(1, 2, 3, 4)
+        self.assertEqual(sq.__str__(), "[Square] (1) 3/4 - 2")
 
     def test_1_kwargs_update(self):
         """Tests the update method with one kwarg"""
-        rect = Rectangle(10, 10, 10, 10, 10)
-        rect.update(height=1)
-        self.assertEqual(rect.__str__(), "[Rectangle] (10) 10/10 - 10/1")
+        sq = Square(5, 2, 2, 1)
+        sq.update(x=12)
+        self.assertEqual(sq.__str__(), "[Square] (1) 12/2 - 5")
