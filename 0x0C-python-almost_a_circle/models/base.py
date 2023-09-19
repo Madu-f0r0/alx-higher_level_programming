@@ -69,7 +69,9 @@ class Base:
 
         if os.path.exists(file_name):
             with open(file_name, encoding="utf-8") as jsonFile:
-                json_list = json.load(jsonFile)
+                json_string = jsonFile.read
+                json_list = Base.from_json_string(json_string)
 
-            return [cls.create(**instance_dict) for instance_dict in json_list]
+            if json_list:
+                return [cls.create(**instance_dict) for instance_dict in json_list]
         return []
