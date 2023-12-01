@@ -14,4 +14,4 @@ if __name__ == "__main__":
     basic = HTTPBasicAuth(username, token)
 
     r = requests.get(url, auth=basic)
-    print(r.json()['id'])
+    print(r.json().get('id'))
