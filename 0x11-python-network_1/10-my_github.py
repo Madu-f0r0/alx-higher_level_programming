@@ -13,5 +13,5 @@ if __name__ == "__main__":
     token = sys.argv[2]
     basic = HTTPBasicAuth(username, token)
 
-    r = requests.post(url, auth=basic)
+    r = requests.get(url, auth=basic)
     print(r.json()['id'])
