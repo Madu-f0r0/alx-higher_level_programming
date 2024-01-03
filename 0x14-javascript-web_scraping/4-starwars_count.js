@@ -7,7 +7,7 @@ const idURL = 'https://swapi-api.alx-tools.com/api/people/18/';
 request(apiURL, (err, response, body) => {
   if (err) {
     console.log(err);
-  } else {
+  } else if (response.statusCode === 200) {
     const allMovies = JSON.parse(body).results;
     let idMovies = 0;
 
@@ -18,5 +18,7 @@ request(apiURL, (err, response, body) => {
     });
 
     console.log(idMovies);
+  } else {
+    console.log(`HTTP error. Status code: ${response.statusCode}`);
   }
 });
