@@ -7,19 +7,19 @@ request(apiURL, (err, response, body) => {
   if (err) {
     console.log(err);
   } else {
-    users_tasks = JSON.parse(body);
+    usersTasks = JSON.parse(body);
 
-    all_tasks_done = {};
-    for (task of users_tasks) {
+    allTasksDone = {};
+    for (task of usersTasks) {
       if (task.completed === true) {
-	uid = task.userId.toString();
-        if (uid in all_tasks_done) {
-	  all_tasks_done.uid += 1;
-	} else {
-          all_tasks_done.uid = 1;
-	}
+        uid = task.userId.toString();
+        if (uid in allTasksDone) {
+	  allTasksDone.uid += 1;
+        } else {
+          allTasksDone.uid = 1;
+        }
       }
     }
-    console.log(all_tasks_done);
+    console.log(allTasksDone);
   }
 });
