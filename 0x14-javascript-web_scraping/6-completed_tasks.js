@@ -7,16 +7,16 @@ request(apiURL, (err, response, body) => {
   if (err) {
     console.log(err);
   } else {
-    usersTasks = JSON.parse(body);
+    const usersTasks = JSON.parse(body);
 
-    allTasksDone = {};
-    for (task of usersTasks) {
+    const allTasksDone = {};
+    for (const task of usersTasks) {
       if (task.completed === true) {
-        uid = task.userId.toString();
+        const uid = task.userId.toString();
         if (uid in allTasksDone) {
-	  allTasksDone.uid += 1;
+          allTasksDone[uid] += 1;
         } else {
-          allTasksDone.uid = 1;
+          allTasksDone[uid] = 1;
         }
       }
     }
