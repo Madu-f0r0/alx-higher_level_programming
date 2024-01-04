@@ -2,7 +2,7 @@
 
 const request = require('request');
 const apiURL = process.argv[2];
-const idURL = 'https://swapi-api.alx-tools.com/api/people/18/';
+const id = '18';
 
 request(apiURL, (err, response, body) => {
   if (err) {
@@ -12,9 +12,11 @@ request(apiURL, (err, response, body) => {
     let idMovies = 0;
 
     allMovies.forEach(movie => {
-      if (movie.characters.includes(idURL)) {
-        idMovies++;
-      }
+      movie.characters.forEach(url => {
+        if (url.includes(id)) {
+          idMovies++;
+        }
+      });
     });
 
     console.log(idMovies);
